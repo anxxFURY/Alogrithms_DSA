@@ -10,6 +10,7 @@ class Graph {
 private:
     bool** adj_matrix;    // Adjacency Matrix
     list<int> *adj_lists; // Adjacency List
+    bool *visited; // DFS
     int num_vertices;
 
 public:
@@ -24,7 +25,7 @@ public:
             }
         }
     }
-
+    // Matrix Adjacency
     void addEdge(int i , int j) {
         adj_matrix[i][j] = true;
         adj_matrix[j][i] = true;
@@ -44,7 +45,7 @@ public:
             cout << endl;
         }
     }
-
+    // List adjacency
     void addEdge(vector<int> adj[],int s, int d) {
         adj[s].push_back(d);
         adj[d].push_back(s);
@@ -59,7 +60,24 @@ public:
         }
     }
 
+    // DFS
+
+    void DFS(int vertex);
 };
+
+void Graph::DFS(int vertex) {
+    visited[vertex] = true;
+    list<int> adj_list = adj_lists[vertex];
+
+    cout << vertex << " ";
+
+    list<int>::iterator i;
+
+    for (i = adj_list.begin(); i != adj_list.end(); ++i)
+        if (!visited[*i])
+            DFS(*i);
+
+}
 
 int main () {
     vector<int> adj[4];
@@ -74,6 +92,7 @@ int main () {
     graph.addEdge(adj,2,3);
     graph.addEdge(adj,1,3);
     graph.addEdge(adj,0,3);
+    graph.DFS(2);
     graph.print_list(adj,4);
     return 0;
 }
