@@ -92,7 +92,7 @@ int main () {
     graph.addEdge(adj,2,3);
     graph.addEdge(adj,1,3);
     graph.addEdge(adj,0,3);
-    graph.DFS(2);
+    graph.DFS(3);
     graph.print_list(adj,4);
     return 0;
 }
