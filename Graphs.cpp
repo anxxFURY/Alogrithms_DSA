@@ -10,7 +10,6 @@ class Graph {
 private:
     bool** adj_matrix;    // Adjacency Matrix
     list<int> *adj_lists; // Adjacency List
-
     int num_vertices;
 
 public:
@@ -74,6 +73,7 @@ int main () {
     graph.addEdge(adj,1,2);
     graph.addEdge(adj,2,3);
     graph.addEdge(adj,1,3);
+    graph.addEdge(adj,0,3);
     graph.print_list(adj,4);
     return 0;
 }
