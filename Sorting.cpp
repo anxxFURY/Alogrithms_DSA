@@ -105,7 +105,7 @@ void mergesort(vector<int>a, int l, int r) {
     mergesort(a,m+1,r);
     merge(a,l,m,r);
 }
-void quickSort(vector<int>a )
+void quickSort(vector<int>a );
 int main () {
 //    int ch;
 //    cin >> ch;
