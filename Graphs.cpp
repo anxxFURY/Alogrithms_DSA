@@ -24,6 +24,9 @@ public:
                 adj_matrix[i][j] = false;
             }
         }
+
+        adj_lists = new list<int>[num_vertices];
+        visited = new bool [num_vertices];
     }
     // Matrix Adjacency
     void addEdge(int i , int j) {
@@ -61,10 +64,13 @@ public:
     }
 
     // DFS
-
+    void addEdge_DFS(int src, int des);
     void DFS(int vertex);
 };
 
+void Graph::addEdge_DFS(int src, int des) {
+    adj_lists[src].push_front(des);
+}
 void Graph::DFS(int vertex) {
     visited[vertex] = true;
     list<int> adj_list = adj_lists[vertex];
@@ -87,12 +93,16 @@ int main () {
     graph.addEdge(2,1);
     graph.addEdge(2,1);
 
-    graph.print();
+   // graph.print();
     graph.addEdge(adj,1,2);
     graph.addEdge(adj,2,3);
     graph.addEdge(adj,1,3);
     graph.addEdge(adj,0,3);
+    graph.addEdge_DFS(0,1);
+    graph.addEdge_DFS(0,2);
+    graph.addEdge_DFS(1,2);
+    graph.addEdge_DFS(1,3);
     graph.DFS(3);
-    graph.print_list(adj,4);
+  //  graph.print_list(adj,4);
     return 0;
 }
