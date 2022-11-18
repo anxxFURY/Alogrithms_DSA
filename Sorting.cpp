@@ -105,7 +105,26 @@ void mergesort(vector<int>a, int l, int r) {
     mergesort(a,m+1,r);
     merge(a,l,m,r);
 }
-void quickSort(vector<int>a );
+int partition(vector<int> a, int start, int end) {
+    int pivot = a[end];
+    int pIndex = start;
+
+    for (int i = start; i < end ; ++i) {
+        if(a[i] < pivot) {
+            swap(a[i], a[pIndex]);
+            pIndex++;
+        }
+    }
+    swap(a[pIndex], a[end]);
+    return pIndex;
+}
+void quickSort(vector<int>a,int start, int end) {
+    if(start < end) {
+        int  partitionIndex = partition(a,start,end);
+        quickSort(a,start,partitionIndex-1);
+        quickSort(a,partitionIndex+1,end);
+    }
+}
 int main () {
 //    int ch;
 //    cin >> ch;
